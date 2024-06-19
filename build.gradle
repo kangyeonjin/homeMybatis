@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+//    데이터베이스와 자바를 연결하려고 커넥터 추가함
+    implementation 'mysql:mysql-connector-java:8.0.28'
+
+// 마이바티스 추가
+    implementation 'org.mybatis:mybatis:3.5.6'
+}
+
+test {
+    useJUnitPlatform()
+}
