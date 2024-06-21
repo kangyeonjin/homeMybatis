@@ -19,6 +19,7 @@ public class EmployeeDTO {
     private java.sql.Date entDate;
     private String entYn;
 
+
     public EmployeeDTO() {
     }
 
