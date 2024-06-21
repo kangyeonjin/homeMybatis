@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="section01.Mapper">
+    <resultMap id="employResultMap" type="section01.EmployeeDTO">
+        <id property="empId" column="emp_id"/>
+        <result property="empName" column="emp_name"/>
+        <result property="empNo" column="emp_no"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="salLevel" column="sal_level"/>
+        <result property="salary" column="salary"/>
+        <result property="bonus" column="bonus"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="entYn" column="ent_yn"/>
+    </resultMap>
+
+    <select id="allEmployee" resultMap="employResultMap">
+        select
+        *
+        from
+        employee
+
+    </select>
+
+    <select id ="employByCode" parameterType="_int" resultMap ="employResultMap">
+
+        select emp_id,
+        emp_name,
+        emp_no,
+        email,
+        phone,
+        dept_code,
+        job_code,
+        sal_level,
+        salary,
+        bonus,
+        manager_id,
+        hire_date,
+        ent_date,
+        ent_yn
+        from  employee
+        where emp_id = #{ empId }
+
+    </select>
+
+    <insert id ="insertEmployee" parameterType="section01.EmployeeDTO">
+
+        insert into employee (
+        emp_id,
+        emp_name,
+        emp_no,
+        email,
+        phone,
+        dept_code,
+        job_code,
+        sal_level,
+        salary,
+        bonus,
+        manager_id,
+        hire_date,
+        ent_date,
+        ent_yn
+        ) values (
+        #{ emp_id },
+        #{ emp_name },
+        #{ emp_no },
+        #{ email },
+        #{ phone },
+        #{ dept_code },
+        #{ job_code },
+        #{ sal_level },
+        #{ salary },
+        #{ bonus },
+        #{ manager_id },
+        #{ hire_date },
+        #{ ent_date },
+        #{ ent_yn },'Y'
+        )
+
+    </insert>
+
+<!--    <update id="modifyEmploy" parameterType="section01.EmployeeDTO">-->
+<!--        update employ-->
+<!--        set-->
+<!--        menu_name = #{ name },-->
+<!--        menu_price = #{ price },-->
+<!--        category_code = #{ categoryCode }-->
+
+<!--        where-->
+<!--        emp_no = #{ empno }-->
+<!--    </update>-->
+
+<!--    <delete id="deleteMenu" parameterType="_int">-->
+<!--        delete-->
+
+<!--        from employ-->
+<!--        where emp_no = #{ empno }-->
+<!--    </delete>-->
+
+
+</mapper>
