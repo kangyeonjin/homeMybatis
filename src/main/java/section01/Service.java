@@ -37,13 +37,13 @@ import static section01.Template.getSqlSession;
             return employ;
         }
 
-        public EmployeeDTO registemployee(int emp_id) {
+        public EmployeeDTO registemployee(int employ) {
 
             SqlSession sqlSession = getSqlSession();
 
             mapper = sqlSession.getMapper(Mapper.class);
 
-            int result = Mapper.insertEmployee(emp_id);
+            int result = mapper.insertEmployee(employ);
 
             if(result > 0) {
                 sqlSession.commit();
@@ -57,7 +57,43 @@ import static section01.Template.getSqlSession;
 
         }
 
+        public boolean modifyEmployee(EmployeeDTO employ) {
+
+            SqlSession sqlSession = getSqlSession();
+
+            mapper = sqlSession.getMapper(Mapper.class);
+
+            int result = mapper.modifyMenu(employ);
+
+            if(result > 0) {
+                sqlSession.commit();
+            } else {
+                sqlSession.rollback();
+            }
+
+            sqlSession.close();
+
+            return result > 0 ? true : false;
+        }
 
 
+        public boolean deleteEmployee(int empid) {
+
+            SqlSession sqlSession = getSqlSession();
+
+            mapper = sqlSession.getMapper(Mapper.class);
+
+            int result = mapper.deleteEmployee(empid);
+
+            if(result > 0) {
+                sqlSession.commit();
+            } else {
+                sqlSession.rollback();
+            }
+
+            sqlSession.close();
+
+            return result > 0 ? true : false;
+        }
 
 }

@@ -8,11 +8,11 @@ public interface Mapper {
 
     EmployeeDTO employByCode(int empId);
 
-    int insertEmployee(EmployeeDTO empid);
+    int insertEmployee(EmployeeDTO employ);
 
-//    int modifyMenu(EmployeeDTO employee);
+    int modifyMenu(EmployeeDTO employ);
 
-//    int deleteMenu(int empId);
+    int deleteEmployee(int empId);
 
 
 }

@@ -55,9 +55,9 @@ public class Controller {
         double salary = Integer.parseInt(parameter.get("salary"));
         double bonus = Integer.parseInt(parameter.get("bonus"));
         String manager_id = parameter.get("manager_id");
-        String hire_date = parameter.get("hire_date");
-        String ent_date =parameter.get("ent_date");
-        String ent_yn = parameter.get("ent_yn");
+//        String hire_date = parameter.get("hire_date");
+//        String ent_date =parameter.get("ent_date");
+//        String ent_yn = parameter.get("ent_yn");
 
         EmployeeDTO employ = new EmployeeDTO();
         employ.setEmpId(emp_id);
@@ -71,11 +71,11 @@ public class Controller {
         employ.setSalary(salary);
         employ.setBonus(bonus);
         employ.setManagerId(manager_id);
-        employ.setHireDate(hire_date);
-        employ.setEntDate(ent_date);
-        employ.setEntYn(ent_yn);
+//        employ.setHireDate(hire_date);
+//        employ.setEntDate(ent_date);
+//        employ.setEntYn(ent_yn);
 
-        boolean result = service.registemployee(employ);
+      boolean result = service.registemployee(employ);
 
         if(result) {
             printResult.printSuccessMessage("insert");
@@ -85,20 +85,36 @@ public class Controller {
 
     }
 
-//    public void modifyEmployee(){
-//
-//
-//    }
-//
-//
-//    public void deleteEmployee(){
-//
-//
-//
-//    }
+    public void modifyEmployee(Map<String, String> parameter) {
 
+        String emp_id = parameter.get("emp_id");
+        String emp_name = parameter.get("emp_name");
+        String email = parameter.get("email");
+        String phone = parameter.get("phone");
 
+        EmployeeDTO employ = new EmployeeDTO();
+        employ.setEmpId(emp_id);
+        employ.setEmpName(emp_name);
+        employ.setEmail(email);
+        employ.setPhone(phone);
 
+        if(service.modifyEmployee(employ)) {
+            printResult.printSuccessMessage("update");
+        } else {
+            printResult.printErrorMessage("update");
+        }
+    }
+
+    public void deleteEmployee(Map<String, String> parameter) {
+
+        int code = Integer.parseInt(parameter.get("code"));
+
+        if(service.deleteEmployee(code)) {
+            printResult.printSuccessMessage("delete");
+        } else {
+            printResult.printErrorMessage("delete");
+        }
+    }
 
 
 }

@@ -63,9 +63,9 @@
         salary,
         bonus,
         manager_id,
-        hire_date,
-        ent_date,
-        ent_yn
+<!--        hire_date,-->
+<!--        ent_date,-->
+<!--        ent_yn-->
         ) values (
         #{ emp_id },
         #{ emp_name },
@@ -78,30 +78,33 @@
         #{ salary },
         #{ bonus },
         #{ manager_id },
-        #{ hire_date },
-        #{ ent_date },
-        #{ ent_yn },'Y'
+<!--        #{ hire_date },-->
+<!--        #{ ent_date },-->
+<!--        #{ ent_yn },'Y'-->
         )
 
     </insert>
 
-<!--    <update id="modifyEmploy" parameterType="section01.EmployeeDTO">-->
-<!--        update employ-->
-<!--        set-->
-<!--        menu_name = #{ name },-->
-<!--        menu_price = #{ price },-->
-<!--        category_code = #{ categoryCode }-->
+    <update id="modifyEmploy" parameterType="section01.EmployeeDTO">
+        update employee
+        set
+        emp_id = #{ emp_id },
+        emp_name = #{ emp_name },
+        email = #{ email }
+        phone = #{ phone }
 
-<!--        where-->
-<!--        emp_no = #{ empno }-->
-<!--    </update>-->
+        where
+        emp_name = #{ emp_name }
 
-<!--    <delete id="deleteMenu" parameterType="_int">-->
-<!--        delete-->
+    </update>
 
-<!--        from employ-->
-<!--        where emp_no = #{ empno }-->
-<!--    </delete>-->
+    <delete id="deleteEmploy" parameterType="_int">
+
+        delete
+        from employee
+        where emp_id = #{ emp_id }
+
+    </delete>
 
 
 </mapper>
